@@ -35,12 +35,11 @@
   for(let node of removeNodes) {
     node.addEventListener('click', () => {
       const nodeId = node.dataset.id;
-      document.querySelector(`.product[data-id="${nodeId}"]`).remove();
       axios.delete(`/products/${nodeId}`)
         .then(responseFromApi => {
           console.log('Success!', responseFromApi);
           if(responseFromApi.status == 204) {
-            
+            document.querySelector(`.product[data-id="${nodeId}"]`).remove();
           }
         })
         .catch(error => console.log('Error!', error))
