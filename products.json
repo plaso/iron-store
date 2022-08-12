@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "62f6b265fa35e5f938a91754"
+  },
+  "name": "T-Shirt",
+  "description": "Naruto design",
+  "price": 19.99,
+  "image": "https://www.4me.com/wp-content/uploads/2018/01/4me-icon-product.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f6b3d4ca2f6327f6f05591"
+  },
+  "name": "iPhone 14",
+  "description": "top notch",
+  "price": 1399.99,
+  "image": "https://www.4me.com/wp-content/uploads/2018/01/4me-icon-product.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f6b5ac84f857d35c333cb5"
+  },
+  "name": "Laptop",
+  "description": "Macbook Pro M1",
+  "price": 1799,
+  "image": "https://www.4me.com/wp-content/uploads/2018/01/4me-icon-product.png"
+},{
+  "_id": {
+    "$oid": "62f6b61384f857d35c333cb6"
+  },
+  "name": "Laptop",
+  "description": "Macbook Pro M2",
+  "price": 2099,
+  "image": "https://www.4me.com/wp-content/uploads/2018/01/4me-icon-product.png"
+},{
+  "_id": {
+    "$oid": "62f6b62584f857d35c333cb7"
+  },
+  "name": "Samsung Galaxy S22",
+  "description": "Brand new Samsung Galaxy S22",
+  "price": 999,
+  "image": "https://www.4me.com/wp-content/uploads/2018/01/4me-icon-product.png"
+},{
+  "_id": {
+    "$oid": "62f6b65e84f857d35c333cb9"
+  },
+  "name": "Corona Six Pack",
+  "description": "Not expired six pack of Coronas",
+  "price": 3.45,
+  "image": "https://www.4me.com/wp-content/uploads/2018/01/4me-icon-product.png"
+}]

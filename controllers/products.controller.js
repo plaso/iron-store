@@ -32,3 +32,15 @@ module.exports.details = (req, res, next) => {
       next(createError(404, "Product not found"));
     });
 };
+
+module.exports.delete = (req, res, next) => {
+  const { id } = req.params;
+  Product.findByIdAndDelete(id)
+    .then((product) => {
+      res.status(204).send(product);
+    })
+    .catch((err) => {
+      console.error(err);
+      next(createError(404, "Product not found"));
+    });
+}
