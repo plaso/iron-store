@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const router = require("./config/router.config");
+const router = require("./config/index.routes");
 app.use(router);
 
 app.use((err, req, res, next) => {
