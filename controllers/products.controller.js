@@ -18,6 +18,10 @@ module.exports.doCreate = (req, res, next) => {
     .then((product) => {
       res.redirect(`/products/${product._id}`);
     })
+    .catch((err) => {
+      console.error(err);
+      next(err);
+    });
   }
 
 module.exports.details = (req, res, next) => {
