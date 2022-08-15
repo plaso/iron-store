@@ -70,17 +70,16 @@ passport.use('local-auth', new LocalStrategy(
 //         .then(user => {
 //           if (user) {
 //             next(null, user)
-//           } else {
-//             return User.create({
-//               email,
-//               googleID,
-//               password: mongoose.Types.ObjectId(),
-//               name
-//             })
-//               .then(createdUser => {
-//                 next(null, createdUser)
-//               })
 //           }
+//           return User.create({
+//             email,
+//             googleID,
+//             password: mongoose.Types.ObjectId(),
+//             name
+//           })
+//         })
+//         .then(createdUser => {
+//           next(null, createdUser)
 //         })
 //         .catch(err => next(err))
 //     } else {
