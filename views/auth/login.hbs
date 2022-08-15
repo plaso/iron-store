@@ -8,7 +8,7 @@
         <input
           type="text"
           name="email"
-          class="custom-form-control form-control py-2 ps-4 {{#if error}}is-invalid{{/if}}"
+          class="custom-form-control form-control py-2 ps-4 {{#if errors}}is-invalid{{/if}}"
           placeholder="Email: user@example.org"
           aria-label="User email"
           value="{{ user.email }}"
@@ -20,7 +20,7 @@
           id="password-input"
           type="password"
           name="password"
-          class="custom-form-control form-control py-2 ps-4 {{#if error}}is-invalid{{/if}}"
+          class="custom-form-control form-control py-2 ps-4 {{#if errors}}is-invalid{{/if}}"
           placeholder="Password"
           aria-label="User password"
         >
@@ -29,7 +29,7 @@
           <i id="password-icon" class="fa fa-eye-slash fa-fw"></i>
         </button>
         </div>
-          {{#if error}}<div class="text-danger text-center mb-2">{{ error }}</div>{{/if}}
+          {{#if errors}}<div class="text-danger text-center mb-2">{{ errors }}</div>{{/if}}
         <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary bg-light-green border-0">Login</button>
       </div>
