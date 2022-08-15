@@ -8,8 +8,8 @@ const charactersController = require("../controllers/characters.controller");
 const authMiddlewares = require("../middlewares/authMiddleware");
 
 const SCOPES = [
-  "https://www.googleapis.com/auth/userinfo.profile",
-  "https://www.googleapis.com/auth/userinfo.email"
+  "profile",
+  "email"
 ]
 
 // MISC

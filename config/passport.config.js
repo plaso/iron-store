@@ -55,7 +55,6 @@ passport.use('google-auth', new GoogleStrategy(
   },
   (accessToken, refreshToken, profile, next) => {
     console.log({ profile });
-    console.log(profile.photos)
 
     const googleID = profile.id;
     const email = profile.emails[0] ? profile.emails[0].value : undefined;
@@ -71,20 +70,17 @@ passport.use('google-auth', new GoogleStrategy(
       })
         .then(user => {
           if (user) {
-            next(null, user)
-          } else {
-            return User.create({
-              email,
-              googleID,
-              password: mongoose.Types.ObjectId(),
-              name,
-              image
-            })
-              .then(createdUser => {
-                next(null, createdUser)
-              })
+            next(null, user);
           }
+          return User.create({
+            email,
+            googleID,
+            password: mongoose.Types.ObjectId(),
+            name,
+            image
+          });
         })
+        .then(createdUser => next(null, createdUser))
         .catch(err => next(err))
     } else {
       next(null, false, { error: 'Error connecting to Google Auth' })
