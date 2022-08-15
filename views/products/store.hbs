@@ -12,7 +12,7 @@
               <h4 class="card-title">{{product.price}}</h4>
               <div class="d-flex justify-content-between">
                 <a href="/products/{{product._id}}" class="btn btn-primary">See details</a>
-                <a class="btn btn-danger remove" data-id="{{product._id}}">Remove</a>
+                {{!-- <a class="btn btn-danger remove" data-id="{{product._id}}">Remove</a> --}}
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<script>
+{{!-- <script>
   const removeNodes = document.querySelectorAll('.remove');
   for(let node of removeNodes) {
     node.addEventListener('click', () => {
@@ -45,4 +45,4 @@
         .catch(error => console.log('Error!', error))
     })
   }
-</script>
+</script> --}}
