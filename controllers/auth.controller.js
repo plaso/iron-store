@@ -8,15 +8,14 @@ module.exports.register = (req, res, next) => {
 module.exports.doRegister = (req, res, next) => {
   const user = req.body;
 
+  const renderWithErrors = (errors) => {
+    res.render("auth/register", { errors, user });
+  };
+
   User.findOne({ email: user.email })
     .then((userFound) => {
       if (userFound) {
-        res.render("auth/register", {
-          user,
-          errors: {
-            email: "Email already exist",
-          },
-        });
+        renderWithErrors("Email already exist");
       } else {
         return User.create(user).then((userCreated) => {
           res.redirect("/profile");
@@ -24,11 +23,11 @@ module.exports.doRegister = (req, res, next) => {
       }
     })
     .catch((err) => {
-      res.render("auth/register", {
-        user,
-        errors: err.errors,
-      });
-      next(err);
+      if (err instanceof mongoose.Error.ValidationError) {
+        renderWithErrors(err.errors)
+      } else {
+        next(err)
+      }
     });
 };
 
@@ -39,8 +38,8 @@ module.exports.login = (req, res, next) => {
 module.exports.doLogin = (req, res, next) => {
   console.log("SESSION =====> ", req.session);
 
-  const renderWithErrors = () => {
-    res.render("auth/login", { error: "Invalid credentials." });
+  const renderWithErrors = (errors) => {
+    res.render("auth/login", { errors });
   };
 
   const { email, password } = req.body;
@@ -48,7 +47,7 @@ module.exports.doLogin = (req, res, next) => {
   User.findOne({ email })
     .then((user) => {
       if (!user) {
-        renderWithErrors();
+        renderWithErrors("Invalid credentials.");
         return;
       } else if (user) {
         user.checkPassword(password).then((match) => {
@@ -56,7 +55,7 @@ module.exports.doLogin = (req, res, next) => {
             req.session.currentUser = user;
             res.redirect("/profile");
           } else {
-            renderWithErrors();
+            renderWithErrors("Invalid credentials.");
           }
         });
       }
