@@ -33,11 +33,12 @@ passport.use('local-auth', new LocalStrategy(
               if (!match) {
                 next(null, false, { error: 'Invalid credentials' })
               } else {
-                if (user.active) {
-                  next(null, user)
-                } else {
-                  next(null, false, { error: "Check your email. You have to activate your account" })
-                }
+                next(null, user)
+                // if (user.active) {
+                //   next(null, user)
+                // } else {
+                //   next(null, false, { error: "Check your email. You have to activate your account" })
+                // }
               }
             })
         }
