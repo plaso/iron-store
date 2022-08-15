@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="text-center mb-4">Characters</h1>
+  <div class="row">
+    {{#if characters.length}}
+      {{#each characters as |character|}}
+        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+          <div class="card shadow bg-body rounded" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Name: {{character.name}}</h5>
+              <p class="card-text">Occupation: {{character.occupation}}</p>
+              <h6 class="card-text">Weapon: {{character.weapon}}</h6>
+              <div class="d-flex justify-content-between mt-4">
+                <a href="/characters/{{character.id}}" class="btn btn-primary">See details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    {{else}}
+      <p>There are no characters 😔 Come back later</p>
+    {{/if}}
+  </div>
+</div>

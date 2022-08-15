@@ -4,6 +4,7 @@ const authController = require("../controllers/auth.controller");
 const authMiddlewares = require("../middlewares/authMiddleware");
 const usersController = require("../controllers/users.controller");
 const productsController = require("../controllers/products.controller");
+const charactersController = require("../controllers/characters.controller");
 
 // MISC
 router.get("/", miscController.home);
@@ -24,5 +25,9 @@ router.get("/products/create", authMiddlewares.isAuthenticated, productsControll
 router.post("/products/create", authMiddlewares.isAuthenticated, productsController.doCreate);
 router.get("/products/:id", authMiddlewares.isAuthenticated, productsController.details);
 // router.delete("/products/:id", authMiddlewares.isAuthenticated, productsController.delete);
+
+// CHARACTERS
+router.get("/characters/list", authMiddlewares.isAuthenticated, charactersController.list);
+router.get("/characters/:id", authMiddlewares.isAuthenticated, charactersController.details);
 
 module.exports = router;

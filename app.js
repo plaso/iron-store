@@ -5,7 +5,7 @@ const logger = require("morgan");
 const hbs = require("hbs");
 const sessionConfig = require("./config/session.config");
 
-require("./config/db.config");
+// require("./config/db.config");
 
 const app = express();
 
