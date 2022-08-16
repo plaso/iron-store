@@ -24,7 +24,7 @@ router.get("/products/store", authMiddlewares.isAuthenticated, productsControlle
 router.get("/products/create", authMiddlewares.isAuthenticated, productsController.create);
 router.post("/products/create", authMiddlewares.isAuthenticated, productsController.doCreate);
 router.get("/products/:id", authMiddlewares.isAuthenticated, productsController.details);
-// router.delete("/products/:id", authMiddlewares.isAuthenticated, productsController.delete);
+router.delete("/products/:id", authMiddlewares.isAuthenticated, productsController.delete);
 
 // CHARACTERS
 router.get("/characters/list", authMiddlewares.isAuthenticated, charactersController.list);
