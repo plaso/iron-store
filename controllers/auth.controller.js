@@ -68,7 +68,6 @@ module.exports.doLogin = (req, res, next) => {
   //   .then((user) => {
   //     if (!user) {
   //       renderWithErrors("Invalid credentials.");
-  //       return;
   //     } else if (user) {
   //       user.checkPassword(password).then((match) => {
   //         if (match) {
