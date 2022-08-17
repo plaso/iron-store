@@ -58,23 +58,19 @@ module.exports.login = (req, res, next) => {
 module.exports.doLogin = (req, res, next) => {
   login(req, res, next)
 
-  // const renderWithErrors = (errors) => {
-  //   res.render("auth/login", { errors });
-  // };
-
   // const { email, password } = req.body;
 
   // User.findOne({ email })
   //   .then((user) => {
   //     if (!user) {
-  //       renderWithErrors("Invalid credentials.");
+  //       res.render("auth/login", { errors: "Invalid credentials." });
   //     } else if (user) {
   //       user.checkPassword(password).then((match) => {
   //         if (match) {
   //           req.session.currentUser = user;
   //           res.redirect("/profile");
   //         } else {
-  //           renderWithErrors("Invalid credentials.");
+  //           res.render("auth/login", { errors: "Invalid credentials." });
   //         }
   //       });
   //     }
