@@ -14,7 +14,12 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.doCreate = (req, res, next) => {
-  Product.create(req.body)
+  const productToCreate = req.body;
+  if(req.file) {
+    productToCreate.image = req.file.path;
+  }
+
+  Product.create(productToCreate)
     .then((product) => {
       res.redirect(`/products/${product._id}`);
     })

@@ -6,6 +6,7 @@ const usersController = require("../controllers/users.controller");
 const productsController = require("../controllers/products.controller");
 const charactersController = require("../controllers/characters.controller");
 const authMiddlewares = require("../middlewares/authMiddleware");
+const fileUploader = require('../config/cloudinary.config');
 
 const SCOPES = [
   "profile",
@@ -30,7 +31,7 @@ router.get("/profile", authMiddlewares.isAuthenticated, usersController.profile)
 // PRODUCTS
 router.get("/products/store", authMiddlewares.isAuthenticated, productsController.list);
 router.get("/products/create", authMiddlewares.isAuthenticated, productsController.create);
-router.post("/products/create", authMiddlewares.isAuthenticated, productsController.doCreate);
+router.post("/products/create", authMiddlewares.isAuthenticated, fileUploader.single('image'), productsController.doCreate);
 router.get("/products/:id", authMiddlewares.isAuthenticated, productsController.details);
 router.delete("/products/:id", authMiddlewares.isAuthenticated, productsController.delete);
 
