@@ -1,6 +1,7 @@
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 const passport = require('passport');
+const mailer = require("../config/mailer.config");
 
 module.exports.register = (req, res, next) => {
   res.render("auth/register");
@@ -19,7 +20,8 @@ module.exports.doRegister = (req, res, next) => {
         renderWithErrors("Email already exist");
       } else {
         return User.create(user).then((userCreated) => {
-          res.redirect("/profile");
+          mailer.sendActivationMail(userCreated.email, userCreated.activationToken);
+          res.redirect("/login");
         });
       }
     })
@@ -65,3 +67,23 @@ module.exports.doLoginGoogle = (req, res, next) => {
 module.exports.logout = (req, res, next) => {
   req.logout(() => res.redirect('/login'))
 };
+
+module.exports.activateAccount = (req, res, next) => {
+  const token = req.params.token;
+
+  User.findOneAndUpdate(
+    { activationToken: token, active: false },
+    { active: true }
+  )
+    .then((user) => {
+      if (user) {
+        res.render("auth/login", {
+          user: { email: user.email },
+          message: "You have activated your account. Thanks for joining!"
+        })
+      } else {
+        res.redirect("/login")
+      }
+    })
+    .catch(next)
+}

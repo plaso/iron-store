@@ -33,17 +33,18 @@ passport.use('local-auth', new LocalStrategy(
               if (!match) {
                 next(null, false, { error: 'Invalid credentials' })
               } else {
-                next(null, user)
-                // if (user.active) {
-                //   next(null, user)
-                // } else {
-                //   next(null, false, { error: "Check your email. You have to activate your account" })
-                // }
+                if (user.active) {
+                  next(null, user)
+                } else {
+                  next(null, false, { error: "Check your email. You have to activate your account" })
+                }
               }
             })
         }
       })
-      .catch(err => next(err))
+      .catch(err => {
+        next(err);
+      })
   }
 ))
 
@@ -76,7 +77,8 @@ passport.use('google-auth', new GoogleStrategy(
             googleID,
             password: mongoose.Types.ObjectId(),
             name,
-            image
+            image,
+            active: true
           }).then(createdUser => {
             next(null, createdUser)
           })
