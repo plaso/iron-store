@@ -15,7 +15,7 @@ const sessionConfig = expressSession({
   },
   store: new MongoStore({
     mongoUrl: DB,
-    ttl: 24 * 60 * 60 * 1000 * sessionMaxAge, // 1 week
+    ttl: 24 * 60 * 60 * sessionMaxAge, // 1 week
   }),
 });
 
