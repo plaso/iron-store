@@ -34,11 +34,6 @@ passport.use('local-auth', new LocalStrategy(
                 next(null, false, { error: 'Invalid credentials' })
               } else {
                 next(null, user)
-                // if (user.active) {
-                //   next(null, user)
-                // } else {
-                //   next(null, false, { error: "Check your email. You have to activate your account" })
-                // }
               }
             })
         }
@@ -46,44 +41,3 @@ passport.use('local-auth', new LocalStrategy(
       .catch(err => next(err))
   }
 ))
-
-// passport.use('google-auth', new GoogleStrategy(
-//   {
-//     clientID: process.env.GOOGLE_CLIENT_ID,
-//     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//     callbackURL: '/auth/google/callback'
-//   },
-//   (accessToken, refreshToken, profile, next) => {
-//     console.log({ profile });
-
-//     const googleID = profile.id;
-//     const email = profile.emails[0] ? profile.emails[0].value : undefined;
-//     const name = profile.displayName;
-
-//     if (googleID && email) {
-//       User.findOne({
-//         $or: [
-//           { googleID },
-//           { email }
-//         ]
-//       })
-//         .then(user => {
-//           if (user) {
-//             next(null, user)
-//           }
-//           return User.create({
-//             email,
-//             googleID,
-//             password: mongoose.Types.ObjectId(),
-//             name
-//           })
-//         })
-//         .then(createdUser => {
-//           next(null, createdUser)
-//         })
-//         .catch(err => next(err))
-//     } else {
-//       next(null, false, { error: 'Error connecting to Google Auth' })
-//     }
-//   }
-// ))

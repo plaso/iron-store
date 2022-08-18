@@ -43,7 +43,6 @@ const login = (req, res, next, provider) => {
         if (loginError) {
           next(loginError)
         } else {
-          req.session.currentUser = user;
           res.redirect('/profile')
         }
       })
@@ -56,29 +55,9 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.doLogin = (req, res, next) => {
-  login(req, res, next)
-
-  // const { email, password } = req.body;
-
-  // User.findOne({ email })
-  //   .then((user) => {
-  //     if (!user) {
-  //       res.render("auth/login", { errors: "Invalid credentials." });
-  //     } else if (user) {
-  //       user.checkPassword(password).then((match) => {
-  //         if (match) {
-  //           req.session.currentUser = user;
-  //           res.redirect("/profile");
-  //         } else {
-  //           res.render("auth/login", { errors: "Invalid credentials." });
-  //         }
-  //       });
-  //     }
-  //   })
-  //   .catch((error) => next(error));
+  login(req, res, next);
 };
 
 module.exports.logout = (req, res, next) => {
-  req.session.destroy();
-  res.redirect("/login");
+  req.logout(() => res.redirect("/login"));
 };

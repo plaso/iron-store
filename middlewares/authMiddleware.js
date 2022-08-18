@@ -1,5 +1,5 @@
 module.exports.isNotAuthenticated = (req, res, next) => {
-  if (!req.session.currentUser) {
+  if (req.isUnauthenticated()) {
     next();
   } else {
     res.redirect("/profile");
@@ -7,7 +7,7 @@ module.exports.isNotAuthenticated = (req, res, next) => {
 };
 
 module.exports.isAuthenticated = (req, res, next) => {
-  if (req.session.currentUser) {
+  if (req.isAuthenticated()) {
     next();
   } else {
     res.redirect("/login");
