@@ -43,7 +43,6 @@ const login = (req, res, next, provider) => {
         if (loginError) {
           next(loginError)
         } else {
-          req.session.currentUser = user;
           res.redirect('/profile')
         }
       })
@@ -64,6 +63,5 @@ module.exports.doLoginGoogle = (req, res, next) => {
 };
 
 module.exports.logout = (req, res, next) => {
-  req.session.destroy();
-  res.redirect("/login");
+  req.logout(() => res.redirect('/login'))
 };

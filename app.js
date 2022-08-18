@@ -26,7 +26,7 @@ app.use(passport.session());
 hbs.registerPartials(__dirname + "/views/partials");
 
 app.use((req, res, next) => {
-  res.locals.currentUser = req.session.currentUser;
+  res.locals.currentUser = req.user;
   next();
 });
 
