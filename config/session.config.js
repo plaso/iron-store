@@ -12,7 +12,7 @@ const sessionConfig = expressSession({
     secure: process.env.COOKIE_SECURE === "true" || false,
     maxAge: 24 * 60 * 60 * 1000 * sessionMaxAge, // 1 week
     httpOnly: true,
-    domain: 'https://iron-store-production.up.railway.app'
+    domain: '.railway.app'
   },
   store: new MongoStore({
     mongoUrl: DB,
