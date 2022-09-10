@@ -46,6 +46,7 @@ module.exports.doLogin = (req, res, next) => {
         user.checkPassword(password).then((match) => {
           if (match) {
             req.session.currentUser = user;
+            console.log(req.session);
             res.redirect("/profile");
           } else {
             res.render("auth/login", { errors: "Invalid credentials." });
